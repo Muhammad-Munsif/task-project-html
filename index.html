@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +17,7 @@
           <i class="fas fa-globe"></i>
           <span>RespoSite</span>
         </div>
-        
+
         <div class="header-controls">
           <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
             <i class="fas fa-moon"></i>
@@ -25,7 +26,7 @@
             <i class="fas fa-bars"></i>
           </button>
         </div>
-        
+
         <ul class="nav-links" id="navLinks">
           <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
           <li><a href="#" class="nav-link" data-page="form">Form</a></li>
@@ -47,7 +48,8 @@
             All pages (Home, Form, Table, List) are contained in this single HTML file with complete functionality.
           </p>
 
-          <div style="display: flex; align-items: center; gap: 15px; margin: 1.5rem 0; padding: 1rem; background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
+          <div
+            style="display: flex; align-items: center; gap: 15px; margin: 1.5rem 0; padding: 1rem; background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
             <i class="fas fa-info-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i>
             <p><strong>Try the theme toggle button</strong> in the header to switch between light and dark mode!</p>
           </div>
@@ -64,27 +66,29 @@
           </ul>
 
           <h2 style="margin-top: 1.5rem">How to Use:</h2>
-          <p>Use the navigation menu above to switch between different sections of the website. Each section demonstrates different UI components:</p>
-          
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+          <p>Use the navigation menu above to switch between different sections of the website. Each section
+            demonstrates different UI components:</p>
+
+          <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
             <div class="card" style="text-align: center;">
               <i class="fas fa-home" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
               <h3>Home</h3>
               <p>Overview of the website features and capabilities</p>
             </div>
-            
+
             <div class="card" style="text-align: center;">
               <i class="fas fa-edit" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
               <h3>Form</h3>
               <p>Interactive contact form with validation</p>
             </div>
-            
+
             <div class="card" style="text-align: center;">
               <i class="fas fa-table" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
               <h3>Table</h3>
               <p>Sample data table with employee information</p>
             </div>
-            
+
             <div class="card" style="text-align: center;">
               <i class="fas fa-list" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
               <h3>List</h3>
@@ -102,13 +106,15 @@
             <div class="form-group">
               <label for="name">Full Name</label>
               <input type="text" id="name" class="form-control" placeholder="Enter your full name" required />
-              <small class="error-msg" id="nameError" style="color: var(--danger-color); display: none;">Please enter your name</small>
+              <small class="error-msg" id="nameError" style="color: var(--danger-color); display: none;">Please enter
+                your name</small>
             </div>
 
             <div class="form-group">
               <label for="email">Email Address</label>
               <input type="email" id="email" class="form-control" placeholder="Enter your email address" required />
-              <small class="error-msg" id="emailError" style="color: var(--danger-color); display: none;">Please enter a valid email address</small>
+              <small class="error-msg" id="emailError" style="color: var(--danger-color); display: none;">Please enter a
+                valid email address</small>
             </div>
 
             <div class="form-group">
@@ -129,16 +135,19 @@
 
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" class="form-control" rows="5" placeholder="Enter your message here..." required></textarea>
-              <small class="error-msg" id="messageError" style="color: var(--danger-color); display: none;">Please enter your message</small>
+              <textarea id="message" class="form-control" rows="5" placeholder="Enter your message here..."
+                required></textarea>
+              <small class="error-msg" id="messageError" style="color: var(--danger-color); display: none;">Please enter
+                your message</small>
             </div>
 
             <button type="submit" class="btn">
               <i class="fas fa-paper-plane"></i> Submit
             </button>
           </form>
-          
-          <div id="formSuccess" style="display: none; margin-top: 1.5rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.2); border-radius: 8px; border-left: 4px solid var(--success-color);">
+
+          <div id="formSuccess"
+            style="display: none; margin-top: 1.5rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.2); border-radius: 8px; border-left: 4px solid var(--success-color);">
             <i class="fas fa-check-circle" style="color: var(--success-color); margin-right: 10px;"></i>
             <span>Thank you! Your message has been submitted successfully.</span>
           </div>
@@ -150,7 +159,7 @@
         <div class="card">
           <h1 class="section-title">Data Table</h1>
           <p>This table displays sample employee data with different status indicators.</p>
-          
+
           <div style="overflow-x: auto;">
             <table class="data-table">
               <thead>
@@ -223,10 +232,12 @@
               </tbody>
             </table>
           </div>
-          
-          <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
+
+          <div
+            style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
             <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 10px;"></i>
-            <span>Hover over table rows to see the highlight effect. The table is fully responsive and will scroll horizontally on small screens.</span>
+            <span>Hover over table rows to see the highlight effect. The table is fully responsive and will scroll
+              horizontally on small screens.</span>
           </div>
         </div>
       </section>
@@ -235,7 +246,7 @@
       <section class="page-content" id="list-page">
         <div class="card">
           <h1 class="section-title">Styled Lists</h1>
-          
+
           <h2>Project Features</h2>
           <ul class="styled-list">
             <li>Responsive design for all devices (mobile, tablet, desktop)</li>
@@ -283,4 +294,5 @@
 
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>

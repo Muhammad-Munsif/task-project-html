@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Website - Home</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Global Styles */
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --success-color: #2ecc71;
+      --danger-color: #e74c3c;
+      --bg-color: #f9f9f9;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --header-bg: #2c3e50;
+      --footer-bg: #2c3e50;
+      --border-color: #ddd;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Dark Mode Variables */
+    .dark-mode {
+      --primary-color: #5dade2;
+      --secondary-color: #1a252f;
+      --light-color: #34495e;
+      --dark-color: #1a252f;
+      --bg-color: #121212;
+      --text-color: #ecf0f1;
+      --card-bg: #1e1e1e;
+      --header-bg: #1a252f;
+      --footer-bg: #1a252f;
+      --border-color: #444;
+      --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--header-bg);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 1.5rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links a.active {
+      color: var(--primary-color);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Header Controls */
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mobile Menu Button */
+    .menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Main Content */
+    main {
+      padding: 2rem 0;
+      flex: 1;
+    }
+
+    .section-title {
+      margin-bottom: 1.5rem;
+      color: var(--secondary-color);
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary-color);
+    }
+
+    .dark-mode .section-title {
+      color: var(--light-color);
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Page Content */
+    .page-content {
+      display: none;
+      animation: fadeIn 0.5s;
+    }
+
+    .page-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Form Styles */
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
+      transition: border 0.3s;
+      background-color: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Table Styles */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1rem;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+      background-color: rgba(0, 0, 0, 0.05);
+      font-weight: 600;
+    }
+
+    .dark-mode .data-table th {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .data-table tr:hover {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    .dark-mode .data-table tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    /* List Styles */
+    .styled-list {
+      list-style: none;
+    }
+
+    .styled-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+    }
+
+    .styled-list li:last-child {
+      border-bottom: none;
+    }
+
+    .styled-list li::before {
+      content: '•';
+      color: var(--primary-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-right: 0.5rem;
+    }
+
+    /* Status Indicators */
+    .status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .status.active {
+      background-color: rgba(46, 204, 113, 0.2);
+      color: #27ae60;
+    }
+
+    .status.inactive {
+      background-color: rgba(231, 76, 60, 0.2);
+      color: #c0392b;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: var(--footer-bg);
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: var(--header-bg);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        transition: left 0.3s;
+        z-index: 99;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .nav-links li {
+        margin: 1rem 0;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .data-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 15px;
+      }
+
+      .section-title {
+        font-size: 1.3rem;
+      }
+
+      .form-control,
+      .btn {
+        padding: 0.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <i class="fas fa-globe"></i>
+          <span>RespoSite</span>
+        </div>
+        
+        <div class="header-controls">
+          <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#" class="nav-link active" data-page="home">Home</a></li>
+          <li><a href="#" class="nav-link" data-page="form">Form</a></li>
+          <li><a href="#" class="nav-link" data-page="table">Table</a></li>
+          <li><a href="#" class="nav-link" data-page="list">List</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- Home Page -->
+      <section class="page-content active" id="home-page">
+        <div class="card">
+          <h1 class="section-title">Welcome to Our Responsive Website</h1>
+          <p>
+            This website demonstrates responsive design principles with a fully integrated interface.
+            All pages (Home, Form, Table, List) are contained in this single HTML file with complete functionality.
+          </p>
+
+          <div style="display: flex; align-items: center; gap: 15px; margin: 1.5rem 0; padding: 1rem; background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
+            <i class="fas fa-info-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i>
+            <p><strong>Try the theme toggle button</strong> in the header to switch between light and dark mode!</p>
+          </div>
+
+          <h2 style="margin-top: 1.5rem">Key Features:</h2>
+          <ul class="styled-list" style="margin-top: 1rem">
+            <li>Fully responsive layout for all devices</li>
+            <li>Mobile-friendly navigation with hamburger menu</li>
+            <li>Light and dark mode with persistent preference</li>
+            <li>Interactive form with validation</li>
+            <li>Styled data table with hover effects</li>
+            <li>Custom list styling with icons</li>
+            <li>All pages integrated into a single HTML file</li>
+          </ul>
+
+          <h2 style="margin-top: 1.5rem">How to Use:</h2>
+          <p>Use the navigation menu above to switch between different sections of the website. Each section demonstrates different UI components:</p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+            <div class="card" style="text-align: center;">
+              <i class="fas fa-home" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+              <h3>Home</h3>
+              <p>Overview of the website features and capabilities</p>
+            </div>
+            
+            <div class="card" style="text-align: center;">
+              <i class="fas fa-edit" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+              <h3>Form</h3>
+              <p>Interactive contact form with validation</p>
+            </div>
+            
+            <div class="card" style="text-align: center;">
+              <i class="fas fa-table" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+              <h3>Table</h3>
+              <p>Sample data table with employee information</p>
+            </div>
+            
+            <div class="card" style="text-align: center;">
+              <i class="fas fa-list" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+              <h3>List</h3>
+              <p>Styled lists with project features and tech stack</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Form Page -->
+      <section class="page-content" id="form-page">
+        <div class="card">
+          <h1 class="section-title">Contact Form</h1>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" class="form-control" placeholder="Enter your full name" required />
+              <small class="error-msg" id="nameError" style="color: var(--danger-color); display: none;">Please enter your name</small>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" placeholder="Enter your email address" required />
+              <small class="error-msg" id="emailError" style="color: var(--danger-color); display: none;">Please enter a valid email address</small>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number" />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" class="form-control">
+                <option value="">Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="support">Technical Support</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" rows="5" placeholder="Enter your message here..." required></textarea>
+              <small class="error-msg" id="messageError" style="color: var(--danger-color); display: none;">Please enter your message</small>
+            </div>
+
+            <button type="submit" class="btn">
+              <i class="fas fa-paper-plane"></i> Submit
+            </button>
+          </form>
+          
+          <div id="formSuccess" style="display: none; margin-top: 1.5rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.2); border-radius: 8px; border-left: 4px solid var(--success-color);">
+            <i class="fas fa-check-circle" style="color: var(--success-color); margin-right: 10px;"></i>
+            <span>Thank you! Your message has been submitted successfully.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Table Page -->
+      <section class="page-content" id="table-page">
+        <div class="card">
+          <h1 class="section-title">Data Table</h1>
+          <p>This table displays sample employee data with different status indicators.</p>
+          
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Position</th>
+                  <th>Department</th>
+                  <th>Email</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>John Smith</td>
+                  <td>Frontend Developer</td>
+                  <td>IT</td>
+                  <td>john.smith@example.com</td>
+                  <td><span class="status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Sarah Johnson</td>
+                  <td>UI/UX Designer</td>
+                  <td>Creative</td>
+                  <td>sarah.j@example.com</td>
+                  <td><span class="status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Michael Brown</td>
+                  <td>Project Manager</td>
+                  <td>Operations</td>
+                  <td>michael.b@example.com</td>
+                  <td><span class="status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Emily Davis</td>
+                  <td>Data Analyst</td>
+                  <td>Finance</td>
+                  <td>emily.d@example.com</td>
+                  <td><span class="status inactive">Inactive</span></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Robert Wilson</td>
+                  <td>Director</td>
+                  <td>Management</td>
+                  <td>robert.w@example.com</td>
+                  <td><span class="status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Jennifer Lee</td>
+                  <td>Backend Developer</td>
+                  <td>IT</td>
+                  <td>jennifer.l@example.com</td>
+                  <td><span class="status active">Active</span></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>David Miller</td>
+                  <td>Marketing Specialist</td>
+                  <td>Marketing</td>
+                  <td>david.m@example.com</td>
+                  <td><span class="status inactive">Inactive</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div style="margin-top: 1.5rem; padding: 1rem; background-color: rgba(52, 152, 219, 0.1); border-radius: 8px;">
+            <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 10px;"></i>
+            <span>Hover over table rows to see the highlight effect. The table is fully responsive and will scroll horizontally on small screens.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- List Page -->
+      <section class="page-content" id="list-page">
+        <div class="card">
+          <h1 class="section-title">Styled Lists</h1>
+          
+          <h2>Project Features</h2>
+          <ul class="styled-list">
+            <li>Responsive design for all devices (mobile, tablet, desktop)</li>
+            <li>Mobile-first approach with progressive enhancement</li>
+            <li>Single HTML file containing all pages and functionality</li>
+            <li>Light and dark mode with user preference persistence</li>
+            <li>Semantic HTML5 markup for accessibility</li>
+            <li>Interactive elements with feedback and validation</li>
+            <li>Custom styling with CSS variables for easy theming</li>
+            <li>Smooth animations and transitions for better UX</li>
+          </ul>
+
+          <h2 style="margin-top: 2rem">Technology Stack</h2>
+          <ul class="styled-list">
+            <li>HTML5 for semantic structure</li>
+            <li>CSS3 with Flexbox/Grid for responsive layouts</li>
+            <li>Vanilla JavaScript for interactivity</li>
+            <li>CSS Custom Properties (variables) for theming</li>
+            <li>Media queries for responsive breakpoints</li>
+            <li>Font Awesome icons for visual elements</li>
+            <li>LocalStorage for theme preference persistence</li>
+          </ul>
+
+          <h2 style="margin-top: 2rem">Browser Compatibility</h2>
+          <ul class="styled-list">
+            <li>Chrome (latest versions)</li>
+            <li>Firefox (latest versions)</li>
+            <li>Safari (latest versions)</li>
+            <li>Edge (latest versions)</li>
+            <li>Opera (latest versions)</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Responsive Website. All rights reserved.</p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8;">
+        This website is a single HTML file with all pages and functionality integrated.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // DOM Elements
+      const menuBtn = document.getElementById('menuBtn');
+      const navLinks = document.getElementById('navLinks');
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('i');
+      const navItems = document.querySelectorAll('.nav-link');
+      const pageContents = document.querySelectorAll('.page-content');
+      const contactForm = document.getElementById('contactForm');
+      const formSuccess = document.getElementById('formSuccess');
+      
+      // Check for saved theme preference or default to light
+      const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const savedTheme = localStorage.getItem('theme');
+      
+      if (savedTheme === 'dark' || (!savedTheme && prefersDarkScheme.matches)) {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+      }
+      
+      // Theme toggle functionality
+      themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+      
+      // Mobile menu toggle
+      menuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+        menuBtn.querySelector('i').classList.toggle('fa-bars');
+        menuBtn.querySelector('i').classList.toggle('fa-times');
+      });
+      
+      // Page navigation
+      navItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Get target page
+          const targetPage = this.getAttribute('data-page');
+          
+          // Update active nav item
+          navItems.forEach(navItem => navItem.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show target page
+          pageContents.forEach(page => page.classList.remove('active'));
+          document.getElementById(`${targetPage}-page`).classList.add('active');
+          
+          // Close mobile menu if open
+          navLinks.classList.remove('active');
+          menuBtn.querySelector('i').classList.remove('fa-times');
+          menuBtn.querySelector('i').classList.add('fa-bars');
+          
+          // Scroll to top of page
+          window.scrollTo(0, 0);
+        });
+      });
+      
+      // Form validation and submission
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Reset previous errors
+          document.querySelectorAll('.error-msg').forEach(error => {
+            error.style.display = 'none';
+          });
+          
+          document.querySelectorAll('.form-control').forEach(input => {
+            input.style.borderColor = '';
+          });
+          
+          formSuccess.style.display = 'none';
+          
+          // Get form values
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const message = document.getElementById('message').value.trim();
+          
+          let isValid = true;
+          
+          // Validate name
+          if (!name) {
+            document.getElementById('nameError').style.display = 'block';
+            document.getElementById('name').style.borderColor = 'var(--danger-color)';
+            isValid = false;
+          }
+          
+          // Validate email
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!email || !emailRegex.test(email)) {
+            document.getElementById('emailError').style.display = 'block';
+            document.getElementById('email').style.borderColor = 'var(--danger-color)';
+            isValid = false;
+          }
+          
+          // Validate message
+          if (!message) {
+            document.getElementById('messageError').style.display = 'block';
+            document.getElementById('message').style.borderColor = 'var(--danger-color)';
+            isValid = false;
+          }
+          
+          // If form is valid, show success message
+          if (isValid) {
+            formSuccess.style.display = 'flex';
+            contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+              formSuccess.style.display = 'none';
+            }, 5000);
+          }
+        });
+      }
+      
+      // Add real-time validation for form fields
+      const formFields = document.querySelectorAll('.form-control');
+      formFields.forEach(field => {
+        field.addEventListener('input', function() {
+          this.style.borderColor = '';
+          const errorId = this.id + 'Error';
+          const errorElement = document.getElementById(errorId);
+          if (errorElement) {
+            errorElement.style.display = 'none';
+          }
+        });
+      });
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-links') && !e.target.closest('.menu-btn') && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          menuBtn.querySelector('i').classList.remove('fa-times');
+          menuBtn.querySelector('i').classList.add('fa-bars');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
